@@ -1,0 +1,42 @@
+
+
+
+<div class="container">
+    <p>subsubcategory works!</p>
+    <form [formGroup]="subsubcatForm">
+        <mat-form-field style="width: 100%;">
+            <input type="text" matInput autocomplete="off" placeholder="Enter subsubcatName"  formControlName="subsubcatName">
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+            <mat-select placeholder="Select subCategory" formControlName="SelectsubcatName">
+                <mat-option *ngFor="let scat of subcat" [value]="scat._id">{{scat.sub_category_name}}</mat-option>
+                
+            </mat-select>
+           
+        </mat-form-field>
+        <!-- <mat-form-field style="width: 100%;">
+            <mat-select placeholder="Select Category" formControlName="SelectcatName">
+                <mat-option [value]="1">Laptop's</mat-option>
+               
+            </mat-select>
+           
+        </mat-form-field> -->
+        <button mat-raised-button class="btn-style"  (click)="InsertSubSubcat()">Insert SubSubcat</button>
+    </form>
+    <ag-grid-angular    style="width:100%; height: 500px;margin-top: 10px;"
+                        class="ag-theme-alpine"
+                        [columnDefs]="subcolData"
+                        [rowData]="subsubcat"
+                        [gridOptions]="gridOpt"
+                        >
+
+
+    </ag-grid-angular>
+
+</div>
+
+<!-- [rowData]="subsubcatdata"
+[gridOptions]="gridOpt" -->
+
+
+{{subsubcat | json}}

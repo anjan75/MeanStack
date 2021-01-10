@@ -1,0 +1,57 @@
+<!-- <div class="container">
+    <mat-form-field style="width:100%">
+    <input type="text" matInput placeholder="SubCategory Name">
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+        <mat-label>Select Category</mat-label>
+        <mat-select >
+
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button class="btn-style">Enter Sub Category</button> 
+</div> -->
+
+
+
+
+<div class="container">
+    <app-errors [errData]="errorsObject"></app-errors>
+    <form [formGroup]="subcategoryForm">
+        <mat-form-field style="width:100%">
+            <input type="text" matInput placeholder="SubCategory Name" formControlName="subcatgoryname">
+            </mat-form-field>
+            <mat-form-field style="width:100%" >
+                <mat-label>Select Category</mat-label>
+                <mat-select formControlName="catselect" >    
+                    
+                    <mat-option [value]="cat._id" *ngFor="let cat of catData">
+                  {{ cat.category_name }}
+                </mat-option>
+                    
+
+        
+                </mat-select>
+        </mat-form-field>
+        <br>
+            <button mat-raised-button class="btn-style" (click)="SubCatgoryInsert()">Enter Sub Category</button> 
+ </form>
+
+    <ag-grid-angular style="width: 100%;height: 200px;"
+                    class="ag-theme-alpine"
+                    [columnDefs]="colData"
+                    [rowData]="sucatdata"
+                    [gridOptions]="gridOpt"
+                    >
+
+    </ag-grid-angular>
+
+
+
+</div>
+
+{{sucatdata | json}}
+<!-- |||
+|||
+
+{{catData | json}} -->

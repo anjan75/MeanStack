@@ -1,0 +1,106 @@
+
+
+
+<!-- product page -->
+<div class="container">
+        <h4 style="text-align: center;">Product Page </h4>
+    <!-- <mat-label>Product Name</mat-label> --> 
+    <form [formGroup]="productFrom" id="frm1" enctype="multipart/form-data" (ngSubmit)="insertProduct(this)" action="http://localhost:3000/uploadFileRef/uploadMet" method="post">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row">
+                <mat-form-field style="width:100%">
+                    <input type="text" matInput autocomplete="off" placeholder="Product Name" formControlName="pname">
+                </mat-form-field>
+                <mat-form-field style="width:100%">
+                    <input type="text" matInput autocomplete="off" placeholder="Product Price" formControlName="pprice">
+                </mat-form-field>
+                <mat-form-field style="width:100%">
+                    <input type="text" matInput autocomplete="off" placeholder="Offer Price" formControlName="offerprice">
+                </mat-form-field>
+                <mat-form-field style="width:100%">
+                    <input type="text" matInput autocomplete="off" placeholder="Description" formControlName="description">
+                </mat-form-field>
+                <mat-form-field style="width:100%"> 
+                    <mat-select placeholder="Select Category" (selectionChange)="slectchange(this)" [(ngModel)]="var_cat" formControlName="selectcat">
+                        <ng-container>
+                            <mat-option [value]="cat._id" *ngFor="let cat of catdata" >{{cat.category_name}}</mat-option>
+          
+                        </ng-container>
+                        
+                     </mat-select>
+                </mat-form-field>
+                <mat-form-field style="width:100%">
+                    <mat-select placeholder="Select Subcategory" (selectionChange)="slectchangesub(this)" [(ngModel)]="var_subcat" formControlName="selectsubcat">
+                        <ng-container *ngFor="let subcat of subcatdat">
+                            <mat-option [value]="subcat._id" *ngIf="var_cat == subcat.cat_id">{{subcat.sub_category_name}}</mat-option>
+                      
+                        </ng-container>
+                        
+                       </mat-select>
+                       {{var_subcat}}
+                </mat-form-field>
+                <mat-form-field style="width:100%">
+                    <mat-select placeholder="Select SubSubCat" (selectionChange)="slectchangesubsub(this)"[(ngModel)]="var_subscat" formControlName="selectsubscat">
+                        <ng-container *ngFor="let subsubcat of subsubcatdat">
+                            <mat-option *ngIf="var_subcat == subsubcat.subcat_id" [value]="subsubcat._id">{{subsubcat.sub_sub_category_name}} </mat-option>
+                        </ng-container>
+                      
+                    </mat-select>
+                    {{var_subscat}}
+                </mat-form-field>
+
+            </div>
+          
+        </div>
+       <div class="col-md-2">
+
+       </div>
+
+        <div class="col-md-5">
+            <div class="row">
+                
+                <mat-form-field style="width:100%">
+                 <mat-select placeholder="Select ProductType" formControlName="ptype">
+                    <mat-option [value]=0>Coming soon</mat-option>
+                    <mat-option [value]=1>Available </mat-option>
+                    <mat-option [value]=1>Available </mat-option>
+                 </mat-select>
+                </mat-form-field>
+                <mat-form-field style="width:100%">
+                    <input type="text" matInput autocomplete="off" placeholder="Brand" formControlName="pbrand">
+                </mat-form-field>
+                <mat-form-field style="width:100%">
+                    <input type="text" matInput placeholder="Size" autocomplete="off" formControlName="psize">
+                </mat-form-field>
+                <mat-form-field style="width:100%">
+                    <input type="text" matInput placeholder="Rating" autocomplete="off" formControlName="prating">
+                </mat-form-field>
+                <mat-form-field style="width:100%"> 
+                    <input type="text" matInput placeholder="Offers" autocomplete="off" formControlName="poffers">
+                </mat-form-field>
+                <mat-form-field style="width:100%">
+                    <input type="text" matInput placeholder="Colors" autocomplete="off" formControlName="pcolors">
+                </mat-form-field>
+                <!-- <mat-form-field style="width:100%">
+                    <input type="text" matInput  placeholder="Image" autocomplete="off"> (click)="insertProduct()"
+                </mat-form-field> -->
+                <input type="file" multiple="true" name="file1" formControlName="pfile">
+                <br>
+                <button mat-raised-button class="btn-style"  style="margin-top: 15px;" >Insert Product</button> 
+             
+
+            </div>
+          
+
+
+        </div>
+
+    </div>
+</form>
+</div>
+
+<!-- 
+{{catdata | json}} -->
+
+<!--ß -->

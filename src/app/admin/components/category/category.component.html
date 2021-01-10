@@ -1,0 +1,29 @@
+
+
+<!-- category page -->
+
+<div class="container" >
+    <app-errors [errData]="errorsObject"></app-errors>
+    <form [formGroup]="categoryForm">
+        <mat-form-field style="width:100%">
+            <input type="text" matInput placeholder="Category Name" 
+            formControlName="categoryname" name="f1" autocomplete="off">
+            </mat-form-field>
+            <br>
+            <button mat-raised-button class="btn-style" (click)="insertCategory()">
+                Enter Category
+            </button> 
+    </form>
+    <br>
+    <br>    
+
+    <ag-grid-angular
+        style="width:100%; height: 500px;"
+        class="ag-theme-alpine"
+        [rowData]="catData"
+        [columnDefs]="colData"
+        [gridOptions]="gridOpt">
+    </ag-grid-angular>
+    
+
+</div>
